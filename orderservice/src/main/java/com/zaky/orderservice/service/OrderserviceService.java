@@ -20,12 +20,15 @@ public class OrderserviceService {
     private OrderserviceRepository orderserviceRepository;
     @Autowired
     private RestTemplate restTemplate;
+
     public List<Orderservice> getAllProduk() {
         return orderserviceRepository.findAll();
     }
+
     public Orderservice getProdukById(Long id) {
         return orderserviceRepository.findById(id).orElse(null);
     }
+
     public List<ResponseTemplate> getOrderWithProdukById(long id) {
         List<ResponseTemplate> responseList = new ArrayList<>();
         Orderservice order = getOrderserviceById(id);
@@ -41,12 +44,15 @@ public class OrderserviceService {
         return responseList;
 
     }
+
     public Orderservice createProduk(Orderservice Orderservice) {
         return orderserviceRepository.save(Orderservice);
     }
+
     public void deleteProduk(Long id) {
         orderserviceRepository.deleteById(id);
     }
+
     public List<Orderservice> getAllOrderservices() {
         return orderserviceRepository.findAll();
     }
