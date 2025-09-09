@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "produk-service"
+		},
+		{
+			"name": "pelanggan-service",
+			"path": "pelanggan-service"
+		}
+	],
+	"settings": {}
+}
