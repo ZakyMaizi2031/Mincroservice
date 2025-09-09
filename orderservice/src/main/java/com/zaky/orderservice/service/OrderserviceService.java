@@ -48,23 +48,19 @@ public class OrderserviceService {
         orderserviceRepository.deleteById(id);
     }
     public List<Orderservice> getAllOrderservices() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllOrderservices'");
+        return orderserviceRepository.findAll();
     }
 
-    public static Orderservice getOrderserviceById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOrderserviceById'");
+    public Orderservice getOrderserviceById(Long id) {
+        return orderserviceRepository.findById(id).orElse(null);
     }
 
     public Orderservice createOrderservice(Orderservice orderservice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createOrderservice'");
+        return orderserviceRepository.save(orderservice);
     }
 
     public void deleteOrderservice(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteOrderservice'");
+        orderserviceRepository.deleteById(id);
     }
 
 }

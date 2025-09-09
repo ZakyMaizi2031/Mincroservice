@@ -15,5 +15,5 @@ public class Pelanggan {
     private Long id;
     private String kode;
     private String nama;
-    private Double alamat;
+    private String alamat;
 }

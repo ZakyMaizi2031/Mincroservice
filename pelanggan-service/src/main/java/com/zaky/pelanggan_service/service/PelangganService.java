@@ -12,33 +12,17 @@ public class PelangganService {
     @Autowired
     private PelangganRepository pelangganRepository;
     
-    public List<Pelanggan> getAllProduk() {
+    public List<Pelanggan> getAllPelanggans() {
         return pelangganRepository.findAll();
     }
-    public Pelanggan getProdukById(Long id) {
+    public Pelanggan getPelangganById(Long id) {
         return pelangganRepository.findById(id).orElse(null);
     }
-    public Pelanggan createProduk(Pelanggan pelanggan) {
+    public Pelanggan createPelanggan(Pelanggan pelanggan) {
         return pelangganRepository.save(pelanggan);
     }
-    public void deleteProduk(Long id) {
+    public void deletePelanggan(Long id) {
         pelangganRepository.deleteById(id);
     }
-    public List<Pelanggan> getAllPelanggans() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllPelanggans'");
-    }
-    public Pelanggan getPelangganById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPelangganById'");
-    }
-    public Pelanggan createPelanggan(Pelanggan pelanggan) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createPelanggan'");
-    }
-    public void deletePelanggan(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deletePelanggan'");
-    }
-
+    
 }
