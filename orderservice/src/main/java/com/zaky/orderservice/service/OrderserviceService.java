@@ -3,6 +3,7 @@ package com.zaky.orderservice.service;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,6 +12,7 @@ import com.zaky.orderservice.repository.OrderserviceRepository;
 import com.zaky.orderservice.vo.Pelanggan;
 import com.zaky.orderservice.vo.Produk;
 import com.zaky.orderservice.vo.ResponseTemplate;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 
 @Service
 
@@ -21,6 +23,9 @@ public class OrderserviceService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
     public List<Orderservice> getAllProduk() {
         return orderserviceRepository.findAll();
     }
@@ -29,12 +34,14 @@ public class OrderserviceService {
         return orderserviceRepository.findById(id).orElse(null);
     }
 
-    public List<ResponseTemplate> getOrderWithProdukById(long id) {
+    public List<ResponseTemplate> getOrderWithProdukById(Long id){
         List<ResponseTemplate> responseList = new ArrayList<>();
-        Orderservice order = getOrderserviceById(id);
-        Produk produk = restTemplate.getForObject("http://localhost:8081/api/produk/"
+        Orderservice order = getOrder(id);
+        ServiceInstance serviceInstance = discoveryClient.getInstances("PRODUK").get(0);
+        Produk produk = restTemplate.getForObject(serviceInstance.getUri() + "/api/produk/"
                 + order.getProdukId(), Produk.class);
-        Pelanggan pelanggan = restTemplate.getForObject("http://localhost:8082/api/pelanggan/"
+                serviceInstance = discoveryClient.getInstances("PELANGGAN").get(0);
+        Pelanggan pelanggan = restTemplate.getForObject(serviceInstance.getUri() + "/api/pelanggan/"
                 + order.getPelangganId(), Pelanggan.class);
         ResponseTemplate vo = new ResponseTemplate();
         vo.setOrder(order);
@@ -42,7 +49,11 @@ public class OrderserviceService {
         vo.setPelanggan(pelanggan);
         responseList.add(vo);
         return responseList;
+    }
 
+    private Orderservice getOrder(Long id) {
+        return orderserviceRepository.findById(id)
+                .orElse(null);
     }
 
     public Orderservice createProduk(Orderservice Orderservice) {
@@ -67,6 +78,11 @@ public class OrderserviceService {
 
     public void deleteOrderservice(Long id) {
         orderserviceRepository.deleteById(id);
+    }
+
+    public ResponseTemplate createOrderWithProduct(ResponseTemplate request) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createOrderWithProduct'");
     }
 
 }

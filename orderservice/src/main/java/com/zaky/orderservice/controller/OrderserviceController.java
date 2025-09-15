@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.zaky.orderservice.model.Orderservice;
 import com.zaky.orderservice.service.OrderserviceService;
+import com.zaky.orderservice.vo.ResponseTemplate;
 
 @RestController
 @RequestMapping("/api/orderservice")
@@ -25,7 +26,11 @@ public class OrderserviceController {
         Orderservice orderservice = orderserviceService.getOrderserviceById(id);
         return orderservice != null ? ResponseEntity.ok(orderservice) : ResponseEntity.notFound().build();
     }
-
+    @GetMapping("/product/{id}")
+    public ResponseEntity<List<ResponseTemplate>> getOrderWithProductById(@PathVariable Long id) {
+        List<ResponseTemplate> responseTemplate = orderserviceService.getOrderWithProdukById(id);
+        return responseTemplate != null ? ResponseEntity.ok(responseTemplate): ResponseEntity.notFound().build();
+    }
     @PostMapping
     public ResponseEntity<Orderservice> createOrderservice(@RequestBody Orderservice orderservice) {
         Orderservice savedOrder = orderserviceService.createOrderservice(orderservice);

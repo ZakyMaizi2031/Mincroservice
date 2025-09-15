@@ -43,7 +43,7 @@ public class ResponseTemplate {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
+        
         return super.toString();
     }
 
