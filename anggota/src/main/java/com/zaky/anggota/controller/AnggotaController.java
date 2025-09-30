@@ -16,7 +16,7 @@ import com.zaky.anggota.model.Anggota;
 import com.zaky.anggota.service.AnggotaService;
 
 @RestController
-@RequestMapping("/api/amggota")
+@RequestMapping("/api/anggota")
 public class AnggotaController {
     @Autowired
     private AnggotaService anggotaService;

@@ -10,7 +10,7 @@ import com.zaky.orderservice.service.OrderserviceService;
 import com.zaky.orderservice.vo.ResponseTemplate;
 
 @RestController
-@RequestMapping("/api/orderservice")
+@RequestMapping("/api/order")
 public class OrderserviceController {
 
     @Autowired
