@@ -1,6 +1,20 @@
 spring:
   application:
     name: pengembalian # Nama unik untuk service ini
+  mail:
+      host: smtp.gmail.com
+      port: 587
+      username: zakymaizi2020@gmail.com
+      password: yhgwmsyzceabuoat
+      properties:
+        mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            trust: smtp.gmail.com
 
 eureka:
   client:
